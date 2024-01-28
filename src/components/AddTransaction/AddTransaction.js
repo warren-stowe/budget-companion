@@ -10,6 +10,13 @@ export default function AddTransaction() {
     "category": ""
   });
 
+  const [transactions, setTransactions] = useState([]);
+
+  const categories = [
+    "Groceries", "Mortgage", "Baby", "Daycare", "Gas", "Home Maintenance", "Car Maintenance",
+    "Alcohol", "Spending (Warren)", "Spending (Ann)", "Utilities", "Student Loans"
+  ]
+
   function handleChange(key, value) {
 
     let update = transaction;
@@ -28,7 +35,7 @@ export default function AddTransaction() {
   }
 
   function handleSubmit() {
-    console.log(transaction);
+    console.log("Submitting new transaction to DB: " + transaction);
   }
 
   return (
@@ -56,8 +63,7 @@ export default function AddTransaction() {
           <label>
             Category:  
             <select className="input-field" onChange={(event) => handleChange("category", event.target.value)}>
-              <option value="Groceries">Groceries</option>
-              <option value="Mortgage">Mortgage</option>
+              {categories.map((category) => <option value={category}>{category}</option>)}
             </select>
           </label>
         </div>
